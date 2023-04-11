@@ -23,7 +23,7 @@ export default function Home() {
           </a>
         </div>
       </SignIn>
-      {!modal ? (
+      {modal ? (
         <Modal>
           <a className="flex justify-end w-full cursor-pointer" onClick={handleReferral}>
             <span className="px-4">X</span>
