@@ -1,8 +1,5 @@
 import { Input, Button } from "@/components/lib";
-
-type Props = {
-  children?: React.ReactNode;
-};
+import { Props } from "@util/types";
 
 export default function Modal({ children }: Props) {
   return (

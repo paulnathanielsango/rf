@@ -1,8 +1,5 @@
 import { Input, Button } from "@/components/lib";
-
-type Props = {
-  children?: React.ReactNode;
-};
+import { Props } from "@util/types";
 
 const SignIn: React.FC<any | Props> = ({ children }) => {
   return (
