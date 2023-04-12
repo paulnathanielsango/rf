@@ -1,11 +1,14 @@
 import React from "react";
+import { useSession } from "next-auth/react";
 import LayoutPage from "@components/layoutpage";
 import SignIn from "@/components/dashboards/signIn";
 import Modal from "@/components/dashboards/modal";
-import { Button } from "@/components/lib";
 
 export default function Home() {
+  const { data: session } = useSession();
   const [modal, setModal] = React.useState(false);
+
+  console.log(session);
 
   const handleReferral = () => {
     setModal(!modal);
@@ -13,19 +16,26 @@ export default function Home() {
 
   return (
     <LayoutPage>
-      <SignIn>
-        <div className="flex items-center justify-center py-4">
-          <a
-            className="font-medium text-blue-500 duration-300 group-hover:text-blue-500/70 cursor-pointer"
-            onClick={handleReferral}
-          >
-            Referral Code
-          </a>
-        </div>
-      </SignIn>
+      {!session ? (
+        <SignIn>
+          <div className="flex items-center justify-center py-4">
+            <a
+              className="font-medium text-blue-500 duration-300 group-hover:text-blue-500/70 cursor-pointer"
+              onClick={handleReferral}
+            >
+              Referral Code
+            </a>
+          </div>
+        </SignIn>
+      ) : (
+        ""
+      )}
       {modal ? (
         <Modal>
-          <a className="flex justify-end w-full cursor-pointer" onClick={handleReferral}>
+          <a
+            className="flex justify-end w-full cursor-pointer"
+            onClick={handleReferral}
+          >
             <span className="px-4">X</span>
           </a>
         </Modal>
