@@ -20,7 +20,10 @@ export const Input = ({ type, name, id, ...props }: any) => {
 
 export const Button = ({ ...props }) => {
   return (
-    <button className="w-full py-3 px-4 bg-gray-700 text-gray-100 font-semibold uppercase hover:bg-gray-600">
+    <button
+      className="w-full py-3 px-4 bg-gray-700 text-gray-100 font-semibold uppercase hover:bg-gray-600"
+      {...props}
+    >
       {props.children}
     </button>
   );
