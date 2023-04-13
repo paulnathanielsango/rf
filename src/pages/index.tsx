@@ -1,5 +1,5 @@
 import React from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import LayoutPage from "@components/layoutpage";
 import SignIn from "@/components/dashboards/signIn";
 import Modal from "@/components/dashboards/modal";
@@ -28,7 +28,15 @@ export default function Home() {
           </div>
         </SignIn>
       ) : (
-        ""
+        <a
+          href={`/api/auth/signout`}
+          onClick={(e) => {
+            e.preventDefault();
+            signOut();
+          }}
+        >
+          sign out
+        </a>
       )}
       {modal ? (
         <Modal>
