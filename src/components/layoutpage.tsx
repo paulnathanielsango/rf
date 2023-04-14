@@ -1,8 +1,5 @@
 import React from "react";
-
-type Props = {
-  children?: React.ReactNode;
-};
+import { Props } from "@util/types";
 
 const LayoutPage: React.FC<any | Props> = ({ children }) => {
   return (
