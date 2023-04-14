@@ -5,10 +5,11 @@ export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      credentials: { password: { label: "Password", type: "password" } },
+      credentials: {
+        username: { label: "Username", type: "username" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials: any) {
-        console.log("credentials", credentials);
-
         return {
           id: "17",
           image:
@@ -27,13 +28,10 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user }) {
       const isAllowedToSignIn = true;
-      console.log("callbacks signIn user: ", user);
 
       if (isAllowedToSignIn) {
-        console.log("signIn success");
         return true;
       } else {
-        console.log("signIn fail");
         // Return false to display a default error message
         return false;
         // Or you can return a URL to redirect to:
@@ -41,15 +39,12 @@ export const authOptions: NextAuthOptions = {
       }
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      // console.log("new user? ", isNewUser);
       token.role = "internal";
       token.iat = Math.floor(Date.now() / 1000);
       token.exp = Math.floor(Date.now() / 1000) + 60 * 60;
-      console.log("token ", token, "user", user, "account", account);
       return token;
     },
     async session({ session, token, user }) {
-      console.log("session next-auth", session, "token", token, "user", user);
       if (user) {
         session.user = user;
       }
