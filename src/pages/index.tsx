@@ -28,15 +28,17 @@ export default function Home() {
           </div>
         </SignIn>
       ) : (
-        <a
-          href={`/api/auth/signout`}
-          onClick={(e) => {
-            e.preventDefault();
-            signOut();
-          }}
-        >
-          sign out
-        </a>
+        <>
+          <a
+            href={`/api/auth/signout`}
+            onClick={(e) => {
+              e.preventDefault();
+              signOut();
+            }}
+          >
+            sign out
+          </a>
+        </>
       )}
       {modal ? (
         <Modal>
